@@ -15,6 +15,11 @@ typedef struct {
     char priorite[10]; // "High" ou "Low"
     Date date_echeance;
 } Tache;
+
+// Variables globales
+Tache taches[100];
+int nb_taches = 0;
+
 // Fonction pour afficher le menu principal
 void afficher_menu() {
     printf("\n=== Gestionnaire de Tâches ===\n");
@@ -26,6 +31,7 @@ void afficher_menu() {
     printf("6. Quitter\n");
     printf("Choisissez une option : ");
 }
+
 // Fonction pour vérifier si une date est valide
 int est_date_valide(int jour, int mois, int annee) {
     // Vérifier si le mois est valide
@@ -46,8 +52,8 @@ int est_date_valide(int jour, int mois, int annee) {
     // Si tout est valide
     return 1;
 }
- 
- // Fonction pour ajouter une tâche
+
+// Fonction pour ajouter une tâche
 void ajouter_tache() {
     if (nb_taches >= 100) {
         printf("La liste des tâches est pleine.\n");
@@ -79,7 +85,15 @@ void ajouter_tache() {
         }
     } while (!est_date_valide(nouvelle_tache.date_echeance.jour, nouvelle_tache.date_echeance.mois, nouvelle_tache.date_echeance.annee));
 
-    // Fonction pour afficher toutes les tâches
+    // Priorité
+    printf("Priorité (High/Low) : ");
+    scanf("%9s", nouvelle_tache.priorite);
+
+    taches[nb_taches++] = nouvelle_tache;
+    printf("Tâche ajoutée avec succès.\n");
+}
+
+// Fonction pour afficher toutes les tâches
 void afficher_taches() {
     if (nb_taches == 0) {
         printf("Aucune tâche à afficher.\n");
@@ -94,6 +108,7 @@ void afficher_taches() {
         printf("Priorité : %s\n", taches[i].priorite);
     }
 }
+
 // Fonction pour modifier une tâche
 void modifier_tache() {
     int index;
@@ -134,6 +149,7 @@ void modifier_tache() {
 
     printf("Tâche modifiée avec succès.\n");
 }
+
 // Fonction pour supprimer une tâche
 void supprimer_tache() {
     int index;
@@ -152,6 +168,7 @@ void supprimer_tache() {
 
     printf("Tâche supprimée avec succès.\n");
 }
+
 // Fonction pour filtrer les tâches par priorité
 void filtrer_par_priorite() {
     char priorite[10];
@@ -167,4 +184,39 @@ void filtrer_par_priorite() {
             printf("Priorité : %s\n", taches[i].priorite);
         }
     }
+}
+
+// Fonction principale
+int main() {
+    int choix;
+
+    do {
+        afficher_menu();
+        scanf("%d", &choix);
+
+        switch (choix) {
+            case 1:
+                ajouter_tache();
+                break;
+            case 2:
+                afficher_taches();
+                break;
+            case 3:
+                modifier_tache();
+                break;
+            case 4:
+                supprimer_tache();
+                break;
+            case 5:
+                filtrer_par_priorite();
+                break;
+            case 6:
+                printf("Au revoir !\n");
+                break;
+            default:
+                printf("Option invalide. Veuillez réessayer.\n");
+        }
+    } while (choix != 6);
+
+    return 0;
 }
