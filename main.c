@@ -152,3 +152,19 @@ void supprimer_tache() {
 
     printf("Tâche supprimée avec succès.\n");
 }
+// Fonction pour filtrer les tâches par priorité
+void filtrer_par_priorite() {
+    char priorite[10];
+    printf("Entrez la priorité à filtrer (High/Low) : ");
+    scanf("%9s", priorite);
+
+    for (int i = 0; i < nb_taches; i++) {
+        if (strcmp(taches[i].priorite, priorite) == 0) {
+            printf("\nTâche %d :\n", i + 1);
+            printf("Titre : %s\n", taches[i].titre);
+            printf("Description : %s\n", taches[i].description);
+            printf("Date d'échéance : %d/%d/%d\n", taches[i].date_echeance.jour, taches[i].date_echeance.mois, taches[i].date_echeance.annee);
+            printf("Priorité : %s\n", taches[i].priorite);
+        }
+    }
+}
