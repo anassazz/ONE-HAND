@@ -94,3 +94,43 @@ void afficher_taches() {
         printf("Priorité : %s\n", taches[i].priorite);
     }
 }
+// Fonction pour modifier une tâche
+void modifier_tache() {
+    int index;
+    printf("Entrez le numéro de la tâche à modifier : ");
+    scanf("%d", &index);
+
+    if (index < 1 || index > nb_taches) {
+        printf("Numéro de tâche invalide.\n");
+        return;
+    }
+
+    // Modifier le titre
+    printf("Modifier le titre (%s) : ", taches[index - 1].titre);
+    scanf("%49s", taches[index - 1].titre);
+
+    // Modifier la description
+    printf("Modifier la description (%s) : ", taches[index - 1].description);
+    scanf(" %[^\n]", taches[index - 1].description); // Permet de lire jusqu'à un '\n'
+
+    // Modifier la date d'échéance
+    printf("Date d'échéance :\n");
+    do {
+        printf("Jour: ");
+        scanf("%d", &taches[index - 1].date_echeance.jour);
+        printf("Mois: ");
+        scanf("%d", &taches[index - 1].date_echeance.mois);
+        printf("Année: ");
+        scanf("%d", &taches[index - 1].date_echeance.annee);
+
+        if (!est_date_valide(taches[index - 1].date_echeance.jour, taches[index - 1].date_echeance.mois, taches[index - 1].date_echeance.annee)) {
+            printf("Date invalide, veuillez réessayer.\n");
+        }
+    } while (!est_date_valide(taches[index - 1].date_echeance.jour, taches[index - 1].date_echeance.mois, taches[index - 1].date_echeance.annee));
+
+    // Modifier la priorité
+    printf("Modifier la priorité (%s) : ", taches[index - 1].priorite);
+    scanf("%9s", taches[index - 1].priorite);
+
+    printf("Tâche modifiée avec succès.\n");
+}
