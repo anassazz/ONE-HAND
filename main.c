@@ -78,3 +78,19 @@ void ajouter_tache() {
             printf("Date invalide, veuillez réessayer.\n");
         }
     } while (!est_date_valide(nouvelle_tache.date_echeance.jour, nouvelle_tache.date_echeance.mois, nouvelle_tache.date_echeance.annee));
+
+    // Fonction pour afficher toutes les tâches
+void afficher_taches() {
+    if (nb_taches == 0) {
+        printf("Aucune tâche à afficher.\n");
+        return;
+    }
+
+    for (int i = 0; i < nb_taches; i++) {
+        printf("\nTâche %d :\n", i + 1);
+        printf("Titre : %s\n", taches[i].titre);
+        printf("Description : %s\n", taches[i].description);
+        printf("Date d'échéance : %d/%d/%d\n", taches[i].date_echeance.jour, taches[i].date_echeance.mois, taches[i].date_echeance.annee);
+        printf("Priorité : %s\n", taches[i].priorite);
+    }
+}
