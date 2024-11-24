@@ -134,3 +134,21 @@ void modifier_tache() {
 
     printf("Tâche modifiée avec succès.\n");
 }
+// Fonction pour supprimer une tâche
+void supprimer_tache() {
+    int index;
+    printf("Entrez le numéro de la tâche à supprimer : ");
+    scanf("%d", &index);
+
+    if (index < 1 || index > nb_taches) {
+        printf("Numéro de tâche invalide.\n");
+        return;
+    }
+
+    for (int i = index - 1; i < nb_taches - 1; i++) {
+        taches[i] = taches[i + 1];
+    }
+    nb_taches--;
+
+    printf("Tâche supprimée avec succès.\n");
+}
