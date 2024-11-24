@@ -46,3 +46,35 @@ int est_date_valide(int jour, int mois, int annee) {
     // Si tout est valide
     return 1;
 }
+ 
+ // Fonction pour ajouter une tâche
+void ajouter_tache() {
+    if (nb_taches >= 100) {
+        printf("La liste des tâches est pleine.\n");
+        return;
+    }
+
+    Tache nouvelle_tache;
+
+    // Titre
+    printf("Titre : ");
+    scanf("%49s", nouvelle_tache.titre);
+
+    // Description
+    printf("Description : ");
+    scanf(" %[^\n]", nouvelle_tache.description); // Permet de lire jusqu'à un '\n'
+
+    // Date d'échéance
+    printf("Date d'échéance :\n");
+    do {
+        printf("Jour: ");
+        scanf("%d", &nouvelle_tache.date_echeance.jour);
+        printf("Mois: ");
+        scanf("%d", &nouvelle_tache.date_echeance.mois);
+        printf("Année: ");
+        scanf("%d", &nouvelle_tache.date_echeance.annee);
+
+        if (!est_date_valide(nouvelle_tache.date_echeance.jour, nouvelle_tache.date_echeance.mois, nouvelle_tache.date_echeance.annee)) {
+            printf("Date invalide, veuillez réessayer.\n");
+        }
+    } while (!est_date_valide(nouvelle_tache.date_echeance.jour, nouvelle_tache.date_echeance.mois, nouvelle_tache.date_echeance.annee));
