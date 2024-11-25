@@ -22,4 +22,16 @@ Le projet utilise deux structures principales :
 - **Menu principal** : L'utilisateur interagit avec l'application via un menu textuel.
 - **Validation des entrées** : Vérifie que les dates fournies sont valides.
 - **Tableau dynamique** : Les tâches sont stockées dans un tableau statique pouvant contenir jusqu'à 100 tâches.
+  
+## Utilisation
+Lors de l'exécution, un menu interactif s'affiche permettant de sélectionner les différentes options. Par exemple :
+
+=== Gestionnaire de Tâches ===
+1. Ajouter une tâche
+2. Afficher les tâches
+3. Modifier une tâche
+4. Supprimer une tâche
+5. Filtrer les tâches par priorité
+6. Quitter
+Choisissez une option :
 
